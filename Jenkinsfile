@@ -1,8 +1,27 @@
 
 node {
-    // This displays colors using the 'xterm' ansi color map.
-    ansiColor('xterm') {
-        // Just some echoes to show the ANSI color.
-        stage "\u001B[31mI'm Red\u001B[0m Now not"
+  try {
+    stage('checkout') {
+      checkout scm
     }
+    stage('prepare') {
+      sh "git clean -fdx"
+    }
+    stage('compile') {
+      echo "nothing to compile for hello.sh..."
+    }
+    stage('test') {
+      sh "./test_hello.sh"
+    }
+    stage('package') {
+      sh "tar -cvzf hello.tar.gz hello.sh"
+    }
+    stage('publish') {
+      echo "uploading package..."
+    }
+  } finally {
+    stage('cleanup') {
+      echo "doing some cleanup..."
+    }
+  }
 }
