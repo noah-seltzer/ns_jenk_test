@@ -1,7 +1,9 @@
 
-node {
-	stage('hello') {
-		echo 'hello world'
-	}
+node('java') {
+
+stage('hello') {
+	echo 'hello world'
+}
+
 
 }
