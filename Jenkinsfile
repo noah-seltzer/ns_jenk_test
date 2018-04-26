@@ -1,5 +1,5 @@
 
-node('java') {
+node{
 
 stage('hello') {
 	echo 'hello world'
