@@ -4,17 +4,11 @@ node {
     stage('checkout') {
       checkout scm
     }
-    stage('prepare') {
-      sh "git clean -fdx"
-    }
     stage('compile') {
-      echo "nothing to compile for hello.sh..."
+      javac HelloWorld.java
     }
     stage('test') {
-      sh "./test_hello.sh"
-    }
-    stage('package') {
-      sh "tar -cvzf hello.tar.gz hello.sh"
+      java HelloWorld
     }
     stage('publish') {
       echo "uploading package..."
